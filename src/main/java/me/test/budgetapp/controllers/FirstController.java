@@ -7,12 +7,17 @@ public class FirstController {
 
     @GetMapping
     public String helloWorld() {
-        return "Hello, World!";
+        return "Приложение запущено";
     }
 
-    @GetMapping("/path/to/page")
-    public String page() {
-        return "Page 1";
+
+
+    @GetMapping("/info")
+    public String info() {
+        return "Проект выполняет Бычкова Маргарита. " +
+                "Название: BudgetApp. " +
+                "Дата создания: 25.02.2023. " +
+                "Проект по формированию бюджета.";
     }
 
 }
