@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class IngredientService {
-    private final Map<Integer, Ingredient> ingredients =new HashMap();
+    public final Map<Integer, Ingredient> ingredients =new HashMap<>();
 
     public Ingredient
     addIngredient (Ingredient ingredient) {
@@ -16,7 +16,7 @@ public class IngredientService {
             }return ingredient;
         }
     public Ingredient
-    getRecipeId(Integer id) {
+    getIngredientId(Integer id) {
         if (ingredients.containsKey(id)) {
             return ingredients.get(id);
         } else {
