@@ -15,9 +15,9 @@ public class FirstController {
     @GetMapping("/info")
     public String info() {
         return "Проект выполняет Бычкова Маргарита. " +
-                "Название: BudgetApp. " +
+                "Название: RecipeApp. " +
                 "Дата создания: 25.02.2023. " +
-                "Проект по формированию бюджета.";
+                "Проект-коллекция рецептов";
     }
 
 }
