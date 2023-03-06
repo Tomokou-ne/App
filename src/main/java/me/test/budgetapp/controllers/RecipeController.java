@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @RequestMapping("/recipe")
 public class RecipeController {
     private final RecipeService recipeService;

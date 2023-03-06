@@ -1,9 +1,11 @@
 package me.test.budgetapp.service;
 
+import org.springframework.stereotype.Service;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-
+@Service
 public class RecipeService {
     private final Map<Integer, Recipe> recipes = new HashMap<>();
 

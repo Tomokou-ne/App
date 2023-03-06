@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Collection;
 
 @RestController
-@SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
 @RequestMapping("/ingredient")
 public class IngredientController {
+
     private final IngredientService ingredientService;
 
     public IngredientController(IngredientService ingredientService) {
