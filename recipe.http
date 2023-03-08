@@ -65,3 +65,7 @@ Content-Type: application/json
       "Посолить, поперчить, дать продуктам две минуты притереться друг к другу и подавать к столу."
     ]
   }
+
+###
+DELETE http://localhost:8080/recipe/1
+Content-Type: application/json

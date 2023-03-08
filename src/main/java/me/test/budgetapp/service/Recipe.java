@@ -3,14 +3,12 @@ package me.test.budgetapp.service;
 import java.util.List;
 
 public class Recipe {
-    private final Integer id;
     private final String name;
     private final Integer cookingTime;
     private final List<Ingredient> ingredients;
     private final List<String> steps;
 
-    public Recipe(Integer id, String name, Integer cookingTime, List<Ingredient> ingredients, List<String> steps) {
-        this.id = id;
+    public Recipe(String name, Integer cookingTime, List<Ingredient> ingredients, List<String> steps) {
         if (name.isEmpty() || name.isBlank()) {
             this.name = "Название рецепта не указано";
         } else {
@@ -24,10 +22,6 @@ public class Recipe {
         this.ingredients = ingredients;
         this.steps = steps;
 
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public String getName() {

@@ -1,9 +1,11 @@
 package me.test.budgetapp.controllers;
 
+import me.test.budgetapp.service.Ingredient;
 import me.test.budgetapp.service.Recipe;
 import me.test.budgetapp.service.RecipeService;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.util.Collection;
 
 @RestController
@@ -28,5 +30,15 @@ public class RecipeController {
     @GetMapping()
     public Collection<Recipe> getAllRecipes() {
         return this.recipeService.getAllRecipes();
+    }
+
+    @PutMapping("/{id}")
+    public Recipe updateRecipe(@PathVariable("id") long id, @RequestBody Recipe recipe) {
+        return recipeService.updateRecipe(id, recipe);
+    }
+
+    @DeleteMapping("/{id}")
+    public Recipe removeRecipe(@PathVariable("id") long id) throws FileNotFoundException {
+        return recipeService.removeRecipe(id);
     }
 }

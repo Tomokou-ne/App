@@ -1,15 +1,13 @@
 package me.test.budgetapp.service;
 
 public class Ingredient {
-    private final Integer id;
     private final String ingredientName;
 
     private final Integer ingredientQuantity;
 
     private final String measureUnit;
 
-    public Ingredient(Integer id, String ingredientName, Integer ingredientQuantity, String measureUnit) {
-        this.id = id;
+    public Ingredient( String ingredientName, Integer ingredientQuantity, String measureUnit) {
         if (ingredientName.isBlank() || ingredientName.isEmpty()) {
             this.ingredientName = "Название ингредиента не указано";
         } else {
@@ -27,9 +25,6 @@ public class Ingredient {
         }
     }
 
-    public Integer getId() {
-        return id;
-    }
 
     public String getIngredientName() {
         return ingredientName;
