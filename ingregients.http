@@ -1,0 +1,19 @@
+###
+GET http://localhost:8080/ingredient
+
+###
+POST http://localhost:8080/ingredient
+Content-Type: application/json
+{
+  "ingredientName": "Специи по вкусу",
+  "ingredientQuantity": null,
+  "measureUnit": null
+}
+
+###
+PUT http://localhost:8080/ingredient/1
+Content-Type: application/json
+
+###
+DELETE http://localhost:8080/ingredient/1
+Content-Type: application/json
