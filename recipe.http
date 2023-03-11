@@ -1,7 +1,7 @@
-###
+###получить рецепт
 GET http://localhost:8080/recipe
 
-###
+###создание рецепта1
 POST http://localhost:8080/recipe
 Content-Type: application/json
 {
@@ -66,6 +66,6 @@ Content-Type: application/json
     ]
   }
 
-###
+###удаление рецепта1
 DELETE http://localhost:8080/recipe/1
 Content-Type: application/json
