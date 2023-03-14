@@ -25,10 +25,12 @@ public class IngredientController {
     @GetMapping("{id}")
     @Operation(summary = "Поиск ингредиента по ID", description = " ")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Ингредиент найден")
+            @ApiResponse(responseCode = "200", description = "Ингредиент найден"),
+            @ApiResponse(responseCode = "400", description = "Неверный запрос"),
+            @ApiResponse(responseCode = "500", description = "Ошибка на сервере")
         }
     )
-    public Ingredient getIngredient(@PathVariable Integer id) {
+    public Ingredient getIngredient(@PathVariable long id) {
         return this.ingredientService.getIngredientId(id);
     }
 

@@ -1,21 +1,37 @@
 package me.test.budgetapp.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.io.FileNotFoundException;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 @Service
 public class IngredientService {
-    public final Map<Long, Ingredient> ingredients =new HashMap<>();
+
+    private final IngredientFileService fileService;
+    public Map<Long, Ingredient> ingredients =new LinkedHashMap<>();
     public long counter = 0;
+
+    @PostConstruct
+    public void init() {
+        readJsonFile();
+    }
+
+    public IngredientService(IngredientFileService fileService) {
+        this.fileService = fileService;
+    }
 
     public Ingredient addIngredient (Ingredient ingredient) {
         ingredients.put(this.counter++, ingredient);
+        saveToJsonFile();
         return ingredient;
     }
-    public Ingredient getIngredientId(Integer id) {
+    public Ingredient getIngredientId(long id) {
         if (ingredients.containsKey(id)) {
             return ingredients.get(id);
         } else {
@@ -36,9 +52,29 @@ public class IngredientService {
 
     public Ingredient updateIngredient (long id, Ingredient ingredient) {
         if (ingredients.containsKey(id)) {
+            saveToJsonFile();
             return ingredients.put(id, ingredient);
         }
         return null;
+    }
+
+    private void saveToJsonFile() {
+        try {
+            String json = new ObjectMapper().writeValueAsString(ingredients);
+            fileService.saveToJsonFile(json);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private void readJsonFile() {
+        String json = fileService.readJsonFile();
+        try {
+            ingredients = new ObjectMapper().readValue(json, new TypeReference<LinkedHashMap<Long, Ingredient>>() {
+            });
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
 
