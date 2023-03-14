@@ -14,7 +14,7 @@ import java.util.Map;
 public class IngredientService {
 
     private final IngredientFileService fileService;
-    public Map<Long, Ingredient> ingredients =new LinkedHashMap<>();
+    private Map<Long, Ingredient> ingredients =new LinkedHashMap<>();
     public long counter = 0;
 
     @PostConstruct
