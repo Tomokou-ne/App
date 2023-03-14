@@ -1,5 +1,6 @@
 ###получить рецепт
 GET http://localhost:8080/recipe
+Content-Type: application/json
 
 ###создание рецепта1
 POST http://localhost:8080/recipe

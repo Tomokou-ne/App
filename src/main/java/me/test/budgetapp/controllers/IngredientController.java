@@ -6,6 +6,8 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import me.test.budgetapp.service.Ingredient;
 import me.test.budgetapp.service.IngredientService;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.FileNotFoundException;
@@ -41,8 +43,11 @@ public class IngredientController {
             @ApiResponse(responseCode = "200", description = "Ингредиент добавлен")
     }
     )
-    public Ingredient addIngredient(@RequestBody Ingredient ingredient) {
-        return this.ingredientService.addIngredient(ingredient);
+    public ResponseEntity<?> addIngredient(@RequestBody Ingredient ingredient) {
+        if (StringUtils.isBlank(ingredient.getIngredientName())) {
+            return ResponseEntity.badRequest().body("Название ингредиента не может быть пустым");
+        }
+        return ResponseEntity.ok(ingredientService.addIngredient(ingredient));
     }
 
     @GetMapping()

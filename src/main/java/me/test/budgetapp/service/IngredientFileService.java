@@ -18,6 +18,7 @@ public class IngredientFileService {
     public void saveToJsonFile(String json) {
         Path path = Path.of(ingredientFilePath, ingredientFileName);
         try {
+            Files.createDirectories(path.getParent());
             removeJsonFile();
             Files.writeString(path, json);
         } catch (IOException e) {
@@ -26,8 +27,8 @@ public class IngredientFileService {
     }
 
     public String readJsonFile() {
-        Path path = Path.of(ingredientFilePath, ingredientFileName);
         try {
+            Path path = Path.of(ingredientFilePath, ingredientFileName);
             return Files.readString(path);
         } catch (IOException e) {
             throw new RuntimeException(e);
