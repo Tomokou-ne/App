@@ -14,7 +14,7 @@ import java.util.Map;
 public class RecipeService {
     private final RecipeFileService fileService;
     private Map<Long, Recipe> recipes = new LinkedHashMap<>();
-    public long counter = 0;
+    private long counter = 0;
 
     public RecipeService(RecipeFileService fileService) {
         this.fileService = fileService;
@@ -43,10 +43,12 @@ public class RecipeService {
 
     public Recipe removeRecipe(long id) throws FileNotFoundException {
         if (this.recipes.containsKey(id)) {
-            return this.recipes.remove(id);
+            this.recipes.remove(id);
+            saveToJsonFile();
         } else {
             throw new FileNotFoundException();
         }
+        return null;
     }
 
     public Recipe updateRecipe (long id, Recipe recipe) {

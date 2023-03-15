@@ -15,7 +15,7 @@ public class IngredientService {
 
     private final IngredientFileService fileService;
     private Map<Long, Ingredient> ingredients =new LinkedHashMap<>();
-    public long counter = 0;
+    private long counter = 0;
 
     @PostConstruct
     public void init() {
@@ -41,10 +41,12 @@ public class IngredientService {
 
     public Ingredient removeIngredient(long id) throws FileNotFoundException {
         if (this.ingredients.containsKey(id)) {
-            return this.ingredients.remove(id);
+            this.ingredients.remove(id);
+            saveToJsonFile();
         } else {
             throw new FileNotFoundException();
         }
+        return null;
     }
     public Collection<Ingredient> getAllIngredients() {
         return ingredients.values();
