@@ -1,0 +1,72 @@
+###получить рецепт
+GET http://localhost:8080/recipe
+Content-Type: application/json
+
+###создание рецепта1
+POST http://localhost:8080/recipe
+Content-Type: application/json
+{
+    "id": 1,
+    "name": "Салат из красной фасоли с творожным сыром, красным луком и сезонным салатом",
+    "cookingTime": 7,
+    "ingredients": [
+      {
+        "id": 1,
+        "name": "Специи по вкусу",
+        "quantity": null,
+        "measureUnit": null
+      },
+      {
+        "id": 2,
+        "name": "Консервированная фасоль",
+        "quantity": 400,
+        "measureUnit": "г"
+      },
+      {
+        "id": 3,
+        "name": "Лимон",
+        "quantity": 1,
+        "measureUnit": "шт"
+      },
+      {
+        "id": 4,
+        "name": "Чеснок",
+        "quantity": 2,
+        "measureUnit": "зубчик"
+      },
+      {
+        "id": 5,
+        "name": "Оливковое масло",
+        "quantity": 50,
+        "measureUnit": "мл"
+      },
+      {
+        "id": 6,
+        "name": "Рукола",
+        "quantity": 100,
+        "measureUnit": "г"
+      },
+      {
+        "id": 7,
+        "name": "Творожный сыр",
+        "quantity": 200,
+        "measureUnit": "г"
+      },
+      {
+        "id": 8,
+        "name": "Красный лук",
+        "quantity": 50,
+        "measureUnit": "г"
+      }
+    ],
+    "portionsQuantity": null,
+    "instruction": [
+      "Открыть две банки красной фасоли в собственном соку, слить сок и промыть фасоль холодной водой.",
+      "Готовую фасоль смешать с мелко нарубленным красным луком, зеленью, давленым чесноком, оливковым маслом, лимонным соком и творожным сыром.",
+      "Посолить, поперчить, дать продуктам две минуты притереться друг к другу и подавать к столу."
+    ]
+  }
+
+###удаление рецепта1
+DELETE http://localhost:8080/recipe/1
+Content-Type: application/json

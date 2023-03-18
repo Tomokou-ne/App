@@ -1,0 +1,29 @@
+###получить ингредиент
+GET http://localhost:8080/ingredient
+Content-Type: application/json
+
+###добавить ингредиент1
+POST http://localhost:8080/ingredient
+Content-Type: application/json
+{
+  "ingredientName": "Специи по вкусу",
+  "ingredientQuantity": null,
+  "measureUnit": null
+}
+
+###добавить ингредиент2
+POST http://localhost:8080/ingredient
+Content-Type: application/json
+{
+  "ingredientName": "Творог",
+  "ingredientQuantity": 350,
+  "measureUnit": гр
+}
+
+###редактировать ингредиент1
+PUT http://localhost:8080/ingredient/1
+Content-Type: application/json
+
+###удалить ингредиент1
+DELETE http://localhost:8080/ingredient/1
+Content-Type: application/json
