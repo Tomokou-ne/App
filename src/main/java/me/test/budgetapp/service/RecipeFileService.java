@@ -11,13 +11,13 @@ import java.nio.file.Path;
 @Service
 public class RecipeFileService {
     @Value(value = "${path.to.recipe.file}")
-    private String dataFilePath;
+    private String recipeFilePath;
 
     @Value(value = "${name.to.recipe.file}")
-    private String dataFileName;
+    private String recipeFileName;
 
     public void saveToJsonFile(String json) {
-        Path path = Path.of(dataFilePath, dataFileName);
+        Path path = Path.of(recipeFilePath, recipeFileName);
         try {
             removeJsonFile();
             Files.writeString(path, json);
@@ -28,14 +28,14 @@ public class RecipeFileService {
 
     public String readJsonFile() {
         try {
-            return Files.readString(Path.of(dataFilePath, dataFileName));
+            return Files.readString(Path.of(recipeFilePath, recipeFileName));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
     public void removeJsonFile() {
         try {
-            Path path = Path.of(dataFilePath, dataFileName);
+            Path path = Path.of(recipeFilePath, recipeFileName);
             Files.deleteIfExists(path);
             Files.createFile(path);
         } catch (IOException e) {
@@ -44,6 +44,6 @@ public class RecipeFileService {
     }
 
     public File getRecipeFile() {
-        return new File(dataFilePath + "/" + dataFileName);
+        return new File(recipeFilePath + "/" + recipeFileName);
     }
 }
