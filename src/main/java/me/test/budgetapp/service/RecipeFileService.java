@@ -3,6 +3,7 @@ package me.test.budgetapp.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -32,7 +33,7 @@ public class RecipeFileService {
             throw new RuntimeException(e);
         }
     }
-    private void removeJsonFile() {
+    public void removeJsonFile() {
         try {
             Path path = Path.of(dataFilePath, dataFileName);
             Files.deleteIfExists(path);
@@ -40,5 +41,9 @@ public class RecipeFileService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public File getRecipeFile() {
+        return new File(dataFilePath + "/" + dataFileName);
     }
 }
