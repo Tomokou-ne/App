@@ -3,8 +3,7 @@ package me.test.budgetapp.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -46,4 +45,14 @@ public class RecipeFileService {
     public File getRecipeFile() {
         return new File(recipeFilePath + "/" + recipeFileName);
     }
+
+    public Path createTempFile(String suffix) {
+        try {
+            return Files.createTempFile(Path.of(recipeFilePath), "tempFile", suffix);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }

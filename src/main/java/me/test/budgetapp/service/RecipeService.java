@@ -3,10 +3,14 @@ package me.test.budgetapp.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.io.FileNotFoundException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -76,5 +80,29 @@ public class RecipeService {
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void addRecipesFromInputStream(InputStream inputStream) throws IOException {
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] array = StringUtils.split(line, '|');
+                Recipe recipe = new Recipe(array[0], Integer.valueOf(array[1]), array[2]);
+                addRecipe(recipe);
+            }
+        }
+    }
+
+    public File createRecipesTxtFile() throws FileNotFoundException {
+        Path path = fileService.createTempFile("Рецепты");
+        try (Writer writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)){
+            for (Recipe recipe : recipes.values()) {
+                writer.append(recipe.toString());
+                writer.append("\n");
+            }
+        } catch (IOException e) {
+            throw new FileNotFoundException();
+        }
+        return path.toFile();
     }
 }
